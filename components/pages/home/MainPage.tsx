@@ -15,7 +15,7 @@ import Footer from "@/components/pages/home/Footer";
 import ClientSubsctibeModel from '@/components/models/ClientSubsctibeModel';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { signOut } from '@/app/auth';
+
 
 
 export type RequestDataType = {
@@ -39,22 +39,19 @@ const MainPage = () => {
         <Image src='/TRA-Logo.png' alt='logo' width={150} height={100} />
         {session ? (
             <Dropdown>
-              <DropdownTrigger>
+            <DropdownTrigger>
               <Avatar showFallback src="https://images.unsplash.com/broken" />
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Static Actions">
-                <DropdownItem key="new"> {session.user?.name}</DropdownItem>
-          
-                <DropdownItem key="delete" className="text-danger" color="danger">
-                <button
-              onClick={() => signOut()}
-              className="bg-red-500 text-white px-4 py-2 rounded-md mt-4"
-            >
-              Logout
-            </button>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Static Actions">
+              <DropdownItem key="new">{session.user?.name}</DropdownItem>
+              <Link href="/api/auth/signout/">
+              <DropdownItem className="bg-red-500 text-white px-4 py-2 rounded-md mt-4">
+                Logout
+              </DropdownItem>
+                  </Link>
+             
+            </DropdownMenu>
+          </Dropdown>
             
 
            

@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export const createRequest = async (data: RequestDataType) => {
   try {
-    const request = await prisma.user.create({
+    const request = await prisma.subscribe.create({
       data: {
         email: data.email,
       },

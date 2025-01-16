@@ -1,6 +1,8 @@
 "use client";
 
+
 import { Tabs, Tab, Input, Button } from "@nextui-org/react";
+import { signIn } from "next-auth/react";
 
 export default function App() {
   // Define tab items
@@ -9,6 +11,12 @@ export default function App() {
       id: "sign-in",
       label: "Sign In",
       content: (
+        <form
+        action={async () => {
+     
+          await signIn()
+        }}
+      >
         <div className="flex flex-col gap-4 p-4">
           <Input
             type="email"
@@ -17,10 +25,12 @@ export default function App() {
             required
             className="w-[430px]"
           />
-          <Button color="primary" size="lg">
+          <Button color="primary" size="lg" type="submit">
             Continue
           </Button>
         </div>
+      </form>
+        
       ),
     },
     {
